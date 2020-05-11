@@ -1,5 +1,4 @@
 import os.path
-import uuid
 
 from .session import FILE_UPLOAD
 from .helper import _resolve_classes, sessionize
@@ -23,19 +22,19 @@ class ExportTable(Fact):
 class File(Fact):
     _type = 'file'
 
-    md5 = String()
-    sha256 = String()
-    sha1 = String()
+    # md5 = String()
+    # sha256 = String()
+    # sha1 = String()
 
-    # XXX old format
-    mime_type = String(field='mime-type')
-    language_name = String()
-    language_id = Integer()
-    language_country = String()
-    type_name = String()
-    type_id = Integer()
-    tlsh = String()
-    magic = Dict()
+    # # XXX old format
+    # mime_type = String(field='mime-type')
+    # language_name = String()
+    # language_id = Integer()
+    # language_country = String()
+    # type_name = String()
+    # type_id = Integer()
+    # tlsh = String()
+    # magic = Dict()
 
     @staticmethod
     def _extract_filename(file_obj):
@@ -193,6 +192,7 @@ class Case(SysFact):
     description = String(required=True, nullable=True)
     priority = Float(nullable=True)
     flavor = Flavor()
+    type = String(required=True)
 
     created_at = Float(read_only=True, field='created-at')
     created_by = String(read_only=True, nullable=True, field='created-by')

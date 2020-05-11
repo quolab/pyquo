@@ -157,9 +157,13 @@ class Model(with_metaclass(ModelMetaClass)):
     _type = None
     _session = None
 
-    def __init__(self, document=None, session=None):
-        self._session = session if session else self._session
+    def __init__(self, document=None, session=None, **kwargs):
         self._data = dict()
+        for key, val in kwargs.items():
+            if key in self._fields:
+                self._data[self._fields[key]] = val
+        if session is not None:
+            self._session = session
         self.document = document
 
     @sessionize
@@ -183,7 +187,6 @@ class Model(with_metaclass(ModelMetaClass)):
         or using the session provided by the instance. If no session is
         available this method raises a SessionError"""
 
-        document = dict(self.document)
         for key, field in self._fields.items():
             if field.required and field not in self._data:
                 raise RequiredError('Required field "{}" missing {}'.format(
@@ -193,7 +196,7 @@ class Model(with_metaclass(ModelMetaClass)):
                 continue
 
             if field in self._data:
-                document[key] = self._data[field]
+                self.document[key] = self._data[field]
 
         serialized = self.serialize_with_document
         cl = serialized.pop('class')
@@ -272,8 +275,9 @@ class BaseFact(Model):
 
     _id = None
 
-    def __init__(self, id, document=None, session=None):
-        super(BaseFact, self).__init__(session=session, document=document)
+    def __init__(self, id, document=None, session=None, **kwargs):
+        super(BaseFact, self).__init__(
+            session=session, document=document, **kwargs)
 
         self.id = id
         self.__references = ReferenceQuerySet(
@@ -403,8 +407,10 @@ class Fact(BaseFact):
     """Fact Model"""
     _class = FACT_CLASS
 
-    def __init__(self, id, document=None, session=None):
-        super(Fact, self).__init__(id, session=session, document=document)
+    def __init__(self, id, document=None, session=None, **kwargs):
+        super(Fact, self).__init__(
+            id, session=session, document=document, **kwargs)
+
         self.__annotations = AnnotationQuerySet(
             self, session=session or self._session)
 
