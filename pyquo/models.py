@@ -199,6 +199,9 @@ class Case(SysFact):
     updated_at = Float(read_only=True, field='updated-at')
     contributors = List(read_only=True, type='Contributor')
 
+    def __init__(self, id=None, **kwargs):
+        super().__init__(id, **kwargs)
+
     @property
     def id(self):
         if self._id is None:
