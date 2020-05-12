@@ -285,6 +285,10 @@ class Creates(Reference):
     _type = 'creates'
 
 
+class Delivered(Reference):
+    _type = 'delivered'
+
+
 class IdentifiedAs(Reference):
     _type = 'identified-as'
 
