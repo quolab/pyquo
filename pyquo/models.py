@@ -7,6 +7,10 @@ from .base import Reference, SysRef, Fact, SysFact, Annotation
 
 
 # Facts
+class Certificate(Fact):
+    _type = 'certificate'
+
+
 class Email(Fact):
     _type = 'email'
 

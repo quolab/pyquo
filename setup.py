@@ -1,10 +1,10 @@
 from distutils.core import setup
 
 setup(name='pyquo',
-      version='19.0.11',
+      version='19.0.12',
       description='Python quolab rest client',
-      author='Joel Thomas',
-      author_email='joel.thomas@quocsient.io',
+      author='QuoLab Technologies',
+      author_email='curious@quolab.com',
       packages=['pyquo'],
       install_requires=[
           'certifi==2017.11.5',
