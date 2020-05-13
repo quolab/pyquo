@@ -10,7 +10,7 @@ pyquo is designed to be compatbile with both python2 and python3
 ## Installation
 
 ```shell
-$ pip install --trusted-host bundles01frh.app.quo --extra-index-url https://bundles01frh.app.quo pyquo
+$ pip install pyquo
 ```
 
 ## Authentication
