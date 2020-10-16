@@ -430,6 +430,8 @@ class Fact(BaseFact):
                     "type": annotation._type,
                     "fact": self.serialize
                 })
+        else:
+            queries.append({"class": "annotation", "fact": self.serialize})
 
         if limit is not None:
             query['limit'] = limit
