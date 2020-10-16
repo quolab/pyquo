@@ -5,7 +5,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 setup(name='pyquo',
-      version='20.1.1',
+      version='20.1.2',
       description='Python QuoLab REST Client',
       long_description=README,
       long_description_content_type='text/markdown',
@@ -19,5 +19,5 @@ setup(name='pyquo',
           'idna==2.6',
           'requests==2.21.0',
           'six==1.12.0',
-          'urllib3==1.24.1'
+          'urllib3==1.24.2'
       ])
