@@ -92,6 +92,10 @@ class ReferenceQuerySet(QuerySet):
 
 
 class FactQuerySet(QuerySet):
+    def __init__(self, *args, **kwargs):
+        self._annotations = kwargs.get('annotations')
+        super(AnnotationQuerySet, self).__init__(*args, **kwargs)
+
     def _target(self, item):
         if self._incoming is False:
             return item.target
