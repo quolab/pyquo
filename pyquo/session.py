@@ -63,11 +63,11 @@ class Session(Session):
         >>> s.get(Case, "2ee9b31253f44e6cb1d40ff7af333b4f")
 
     """
-    def __init__(self, base_url, auth=None, global_session=False,
+    def __init__(self, base_url, verify=True, auth=None, global_session=False,
                  *args, **kwargs):
         super(Session, self).__init__(*args, **kwargs)
-
         self.url = base_url
+        self.verify = verify
         if global_session is True:
             set_global_session(self)
 
@@ -77,25 +77,28 @@ class Session(Session):
     @logme
     def http_post(self, path, data=None, json=None, headers={}):
         url = urljoin(self.url, path)
-        res = self.post(url, data=data, json=json, headers=headers)
+        res = self.post(url, data=data, json=json,
+                        headers=headers, verify=self.verify)
         return res
 
     @logme
     def http_patch(self, path, data=None, json=None, headers={}):
         url = urljoin(self.url, path)
-        res = self.patch(url, data=data, json=json, headers=headers)
+        res = self.patch(url, data=data, json=json,
+                         headers=headers, verify=self.verify)
         return res
 
     @logme
     def http_delete(self, path, data=None, json=None, headers={}):
         url = urljoin(self.url, path)
-        res = self.delete(url, data=data, json=json, headers=headers)
+        res = self.delete(url, data=data, json=json,
+                          headers=headers, verify=self.erify)
         return res
 
     @logme
     def http_get(self, path):
         url = urljoin(self.url, path)
-        res = self.get(url)
+        res = self.get(url, verify=self.verify)
         return res
 
     def remove(self, query):
