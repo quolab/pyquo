@@ -19,5 +19,5 @@ setup(name='pyquo',
           'idna==2.6',
           'requests==2.21.0',
           'six==1.12.0',
-          'urllib3==1.24.2'
+          'urllib3==1.26.5'
       ])
