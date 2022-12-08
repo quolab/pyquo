@@ -14,7 +14,7 @@ setup(name='pyquo',
       packages=['pyquo'],
       url='https://github.com/quolab/pyquo',
       install_requires=[
-          'certifi==2018.8.24',
+          'certifi==2022.12.7',
           'chardet==3.0.4',
           'idna==2.6',
           'requests==2.21.0',
